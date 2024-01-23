@@ -1,0 +1,28 @@
+﻿@model WebApplication1.Data.ProductViewModel
+@{
+    ViewBag.Title = "Create New Category";
+    Layout = "~/Views/Shared/_Layout.cshtml"; // Adjust layout path based on your project structure
+}
+
+<h2>Create New Category</h2>
+
+@using (Html.BeginForm("Create", "Product", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Name)
+        @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Description)
+        @Html.TextAreaFor(model => model.Description, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        <input type="submit" value="Create" class="btn btn-primary" />
+    </div>
+}
